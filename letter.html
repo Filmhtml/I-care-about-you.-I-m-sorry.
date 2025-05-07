@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>Love Letter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pink: #ff4f81;
+      --light-pink: #ffeef5;
+      --deep-pink: #ff7aa5;
+      --white: #fff;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #ffe6f0, #fff5f9);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Itim', cursive;
+      overflow: hidden;
+    }
+
+    .envelope-wrapper {
+      width: 92%;
+      max-width: 360px;
+      height: 320px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .envelope {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .flap {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 160px;
+      background: var(--deep-pink);
+      clip-path: polygon(0 100%, 50% 0%, 100% 100%);
+      z-index: 3;
+      transition: transform 1s ease;
+      transform-origin: top center;
+      box-shadow: 0 4px 8px var(--shadow);
+    }
+
+    .letter {
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%) translateY(50%);
+      width: 94%;
+      background: var(--white);
+      padding: 24px 20px;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px var(--shadow);
+      opacity: 0;
+      z-index: 2;
+      transition: all 1s ease;
+      word-break: break-word;
+    }
+
+    .letter h3 {
+      margin-top: 0;
+      color: var(--pink);
+      font-size: 1.4em;
+      text-align: center;
+    }
+
+    .letter p {
+      margin: 12px 0 0;
+      color: #444;
+      line-height: 1.75;
+      font-size: 1.1em;
+      white-space: pre-wrap;
+      text-align: justify;
+    }
+
+    .cover {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 150px;
+      background: var(--pink);
+      border-radius: 0 0 16px 16px;
+      z-index: 1;
+      box-shadow: inset 0 8px 12px rgba(255, 255, 255, 0.2);
+    }
+
+    .seal {
+      position: absolute;
+      bottom: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 22px;
+      height: 22px;
+      background: red;
+      border-radius: 50%;
+      z-index: 4;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+    }
+
+    .envelope-wrapper.open .flap {
+      transform: rotateX(180deg);
+    }
+
+    .envelope-wrapper.open .letter {
+      transform: translateX(-50%) translateY(-120px);
+      opacity: 1;
+      z-index: 5;
+    }
+
+    .floating-image {
+      position: absolute;
+      width: 100px;
+      opacity: 0.7;
+      z-index: 0;
+      animation: floatUp 20s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0);
+        opacity: 0;
+      }
+      30% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh);
+        opacity: 0;
+      }
+    }
+
+    .heart {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: #ff80a0;
+      transform: rotate(45deg);
+      animation: float 8s infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: #ff80a0;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -6px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -6px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <audio id="openSound" src="open-letter.mp3" preload="auto"></audio>
+
+  <div class="envelope-wrapper" onclick="openLetter()">
+    <div class="envelope">
+      <div class="flap"></div>
+      <div class="letter">
+        <h3>❤️ I care about you. I'm truly sorry. ❤️</h3>
+        <p>
+พี่อยากขอโทษจากใจจริงสำหรับทุกสิ่งที่พี่เคยทำให้รู้สึกไม่ดี 💔
+ตลอดเวลาที่เราคบกัน พี่ขอยอมรับว่าพี่อาจมีสิ่งที่พลาดไป
+แต่สิ่งหนึ่งที่พี่อยากให้รู้คือ...
+ทุกคำที่พี่เคยบอกว่ารักผักมาก — พี่ไม่เคยโกหกเลยนะ 🥺
+พี่รักมากเลย และแคร์มากมากจริง ๆ 💖
+
+พี่อาจเคยไม่ได้ให้ของขวัญอะไรให้ผักเลย 🎁
+แต่เว็บนี้... พี่ตั้งใจทำขึ้นมาให้ผักเลยโดยเฉพาะนะ 🌷
+
+ขอบคุณสำหรับความรักที่ผักเคยมีให้พี่มาก ๆ ❤️
+แม้มันจะกลายเป็น “เคยมี”
+แต่สำหรับพี่... มันยังคงอยู่เสมอเสมอเสมอเลยนะคะ 💞
+        </p>
+      </div>
+      <div class="cover"></div>
+      <div class="seal"></div>
+    </div>
+  </div>
+
+  <script>
+    function openLetter() {
+      document.querySelector('.envelope-wrapper').classList.add('open');
+      document.getElementById('openSound').play();
+    }
+
+    for (let i = 0; i < 30; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.top = Math.random() * 100 + 'vh';
+      heart.style.animationDuration = 5 + Math.random() * 5 + 's';
+      heart.style.opacity = Math.random();
+      document.body.appendChild(heart);
+    }
+
+    const imageCount = 20;
+    const imageSources = ["couple1.jpg", "0003.png", "004.png", "005.gif"];
+    for (let i = 0; i < imageCount; i++) {
+      const img = document.createElement("img");
+      const randomSrc = imageSources[Math.floor(Math.random() * imageSources.length)];
+      img.src = randomSrc;
+      img.className = "floating-image";
+      img.style.left = `${Math.random() * 100}vw`;
+      img.style.bottom = `-${Math.random() * 200 + 100}px`;
+      img.style.width = `${80 + Math.random() * 60}px`;
+      img.style.animationDuration = `${12 + Math.random() * 10}s`;
+      img.style.animationDelay = `${Math.random() * 10}s`;
+      img.style.opacity = `${0.4 + Math.random() * 0.6}`;
+      document.body.appendChild(img);
+    }
+  </script>
+</body>
+</html>

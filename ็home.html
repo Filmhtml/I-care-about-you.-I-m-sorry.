@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>I care about you. I'm sorry.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #ffdbe8, #ffeef5);
+      font-family: 'Itim', cursive;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .container {
+      position: relative;
+      width: 90vw;
+      max-width: 450px;
+    }
+
+    .container img {
+      width: 100%;
+      display: block;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+      width: 80%;
+    }
+
+    .overlay h1 {
+      font-size: 1.8em;
+      margin: 0 0 10px;
+    }
+
+    .overlay p {
+      font-size: 1.1em;
+      margin: 0 0 15px;
+    }
+
+    .overlay button {
+      padding: 8px 22px;
+      font-size: 1em;
+      border: none;
+      border-radius: 20px;
+      background-color: white;
+      color: #ff4f81;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
+
+    .overlay button:hover {
+      background-color: #fff0f5;
+    }
+
+    /* ใส่ใน <style> ก็ได้ */
+@keyframes fadeOutPage {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+  
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="videoplayback (1).weba" type="audio/mp3">
+  </audio>
+
+  <div class="container">
+    <img src="heart.png" alt="Heart Background">
+    <div class="overlay">
+      <h1>I still choose you. Every time, every version of me.</h1>
+      <p>ของขวัญพิเศษสำหรับคนพิเศษที่สุด  💌</p>
+      <button onclick="goToLook()">Start!</button>
+    </div>
+  </div>
+  <script>
+    function goToLook() {
+      const flash = document.createElement("div");
+      flash.style.position = "fixed";
+      flash.style.top = 0;
+      flash.style.left = 0;
+      flash.style.width = "100vw";
+      flash.style.height = "100vh";
+      flash.style.background = "white";
+      flash.style.zIndex = 9999;
+      flash.style.opacity = 1;
+      flash.style.transition = "opacity 0.6s ease-out";
+      document.body.appendChild(flash);
+  
+      setTimeout(() => {
+        flash.style.opacity = 0;
+        setTimeout(() => {
+          window.location.href = "look.html";
+        }, 600); // เปลี่ยนหน้าเมื่อ fade เสร็จ
+      }, 50);
+    }
+  </script>
+  
+
+</body>
+</html>
